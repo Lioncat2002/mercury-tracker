@@ -21,3 +21,6 @@ Fetches the image to be rendered by the img tag and adds the EmailOpenEvent with
 <br>
 `GET /metrics`<br>
 Fetches the metrics of last 10 minutes along with number of Opens per OS and device
+
+## Public Endpoint:
+https://mercury-email-tracker.fly.dev/
