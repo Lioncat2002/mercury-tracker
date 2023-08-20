@@ -19,10 +19,9 @@ export function setUpWorker(){
         const minKey = currentTime.toISOString().substring(0, 16); // Group by min
         const osKey=`${minKey}|os|${os}`
         const deviceKey=`${minKey}|device|${device}`
-        
-        await RedisClient.hincrby('emailOpenEventCounts', minKey, 1)
-        await RedisClient.hincrby('emailOpenEventCounts',osKey,1)
-        await RedisClient.hincrby('emailOpenEventCounts',deviceKey,1)
+        await RedisClient.hincrby('emailOpenEventCounts', minKey, 1)//Calculates number of opens per minute
+        await RedisClient.hincrby('emailOpenEventCounts',osKey,1)//Calculates number of opens based on os
+        await RedisClient.hincrby('emailOpenEventCounts',deviceKey,1)//Calculates number of opens based on device
         return Promise.resolve();
     },{
        connection: connection,

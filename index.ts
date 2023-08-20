@@ -6,18 +6,22 @@ import cron from "node-cron"
 
 const app: Express = express();
 const port = process.env.PORT||'3000';
-
+//Initialize the RedisClient and Queue
 InitQueue();
+//Root 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
-
+//GET: gets the image requested by the mail server and adds
 app.get('/event',GetEmailOpenEvent)
+//GET: gets the metrics of emails opened and other data
 app.get('/metrics',GetMetrics)
-
+//Start express app
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at port: ${port}`);
+  //Start the bullmq worker for processing the email events
   const worker=setUpWorker()
+  //setup a cron job to run every minute
   cron.schedule('* * * * *', async () => {
     
    await worker.run()
