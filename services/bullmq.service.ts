@@ -14,12 +14,16 @@ export function InitQueue(){
 }
 export function setUpWorker(){
     const worker=new Worker('emailQueue',async job=>{
-        const { userEmail } = job.data;
+        const { user_email,os,device } = job.data;
         const currentTime = new Date();
         const minKey = currentTime.toISOString().substring(0, 16); // Group by min
-        console.log(minKey)
-        await RedisClient.hincrby('emailOpenEventCounts', minKey, 1);
-        return Promise.resolve("meow");
+        const osKey=`${minKey}|os|${os}`
+        const deviceKey=`${minKey}|device|${device}`
+        
+        await RedisClient.hincrby('emailOpenEventCounts', minKey, 1)
+        await RedisClient.hincrby('emailOpenEventCounts',osKey,1)
+        await RedisClient.hincrby('emailOpenEventCounts',deviceKey,1)
+        return Promise.resolve();
     },{
        connection: connection,
     })
