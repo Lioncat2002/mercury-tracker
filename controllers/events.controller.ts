@@ -48,7 +48,7 @@ export async function GetMetrics(req:Request,res:Response){
   const timeSeriesData:any[] = []
 
   // Retrieve event counts for the last 6 minutes (adjust the timeframe as needed)
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 10; i++) {
     const timestamp = currentTime - i * 60 * 1000
     const time = new Date(timestamp).toISOString().substring(0, 16)
     const totalOpens = await RedisClient.hget('emailOpenEventCounts', time) || 0
