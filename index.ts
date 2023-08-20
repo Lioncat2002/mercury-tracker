@@ -12,7 +12,7 @@ InitQueue();
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
-//GET: gets the image requested by the mail server and adds
+//GET: gets the image requested by the mail server and adds user data to job queue for processing
 app.get('/event',GetEmailOpenEvent)
 //GET: gets the metrics of emails opened and other data
 app.get('/metrics',GetMetrics)

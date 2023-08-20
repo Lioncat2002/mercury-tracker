@@ -40,7 +40,7 @@ async function calculateOpensByAttribute(attribute:string){
  * 
  * @param req Express Request
  * @param res Express Response
- * Sends the metrics(timeseries data, number of opens based on os, device, email)
+ * Sends the metrics(timeseries data, number of opens based on os, device)
  */
 
 export async function GetMetrics(req:Request,res:Response){
