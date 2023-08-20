@@ -43,7 +43,7 @@ export async function GetMetrics(req:Request,res:Response){
     const time = new Date(timestamp).toISOString().substring(0, 16);
     const totalOpens = await RedisClient.hget('emailOpenEventCounts', time) || 0;
 
-    timeSeriesData.push({ totalOpens: parseInt(totalOpens?totalOpens:''),time: new Date(timestamp).toLocaleString() });
+    timeSeriesData.push({ totalOpens: parseInt(totalOpens?totalOpens:'0'),time: new Date(timestamp).toLocaleString() });
   }
  
   const opensByOS = await calculateOpensByAttribute('os');
