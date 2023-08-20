@@ -1,7 +1,14 @@
 # mercury-tracker
 An email tracker written in typescript
+
 ## Installation:
 Install the dependencies with `npm install`<br>
+Create a `.env` in the root of the project with the followinf entries
+```env
+PORT=3000
+REDIS_HOST="REDIS HOST NAME"
+REDIS_PASS="REDIS PASSWORD"
+```
 Run the server with `npm run dev`<br>
 However to using with an email you will need to host it somewhere like `fly.io`<br>
 You can also run suing the provided Dockerfile
